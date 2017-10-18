@@ -1,5 +1,9 @@
 const chalk = require('chalk');
-// init event listeners
+
+
+/**
+ * Node process events
+ */
 module.exports.processCloseEvents = (serverInstance, dbConnection) => {
   process.on('SIGINT', function onSigint () {
     console.info(
@@ -53,4 +57,5 @@ module.exports.onListening = (port, nodeEnv) => {
   console.log(`${chalk.blue('Server Listening on port ')}${chalk.yellow(port)}`);
   console.log(`Environment: ${chalk.red(nodeEnv)}`);
   console.log('-----------------------------------------------------------------');
+  console.log('');
 }
