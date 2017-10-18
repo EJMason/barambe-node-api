@@ -4,6 +4,7 @@ const http = require('http');
 const config = require('config');
 const express = require('express');
 const chalk = require('chalk');
+var bodyParser = require('body-parser');
 
 const utils = require('./utils/serverEvents');
 
@@ -15,12 +16,19 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname ,'access.log'), {
 // watch for sigint and sigterm
 utils.processCloseEvents(server, {});
 
-
 // -------------------------------- Middleware -------------------------------- //
+// https://github.com/expressjs/body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// production middleware...
 if (config.isProduction) {
   // https://github.com/helmetjs/helmet
   app.use(require('helmet')());
-} if (config.isDevelopment) {
+}
+
+// develpoment middleware
+if (config.isDevelopment) {
   console.log('\nInitializing development middleware...');
 
   // https://github.com/expressjs/morgan
@@ -34,6 +42,8 @@ app.get('/test', (req, res) => {
   .status(200)
   .send('ok');
 });
+
+
 // routers
 
 // test db connection
