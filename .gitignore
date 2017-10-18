@@ -1,4 +1,6 @@
 
+dist
+
 # configuration files
 development.js
 production.js
