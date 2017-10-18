@@ -4,8 +4,9 @@
   "description": "Barambe REST API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js"
+    "test": "jest",
+    "test:w": "NODE_ENV=testing jest --watch --colors",
+    "dev": "NODE_ENV=development node ./src/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +19,23 @@
     "helmet": "^3.9.0"
   },
   "devDependencies": {
+    "jest": "^21.2.1",
     "morgan": "^1.9.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+    ],
+    "coverageThreshold": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    },
+    "coverageReporters": [
+      "text-summary"
+    ]
   }
 }
