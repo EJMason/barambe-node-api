@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:w": "NODE_ENV=testing jest --watch --colors",
+    "docker:dev": "node ./src/app.js",
     "dev": "NODE_ENV=development node ./src/app.js"
   },
   "author": "",

@@ -4,7 +4,7 @@ const http = require('http');
 const config = require('config');
 const express = require('express');
 const chalk = require('chalk');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const utils = require('./utils/serverEvents');
 
@@ -21,13 +21,13 @@ utils.processCloseEvents(server, {});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// production middleware...
+// * --> production middleware...
 if (config.isProduction) {
   // https://github.com/helmetjs/helmet
   app.use(require('helmet')());
 }
 
-// develpoment middleware
+// * --> develpoment middleware
 if (config.isDevelopment) {
   console.log('\nInitializing development middleware...');
 
