@@ -29,7 +29,7 @@ ENTRYPOINT [ "yarn", "run", "docker:dev" ]
 # docker build --file="./.docker/node-dev.dockerfile" --tag ejmason/node .
 # docker run -d -p 1337:3000 ejmason/node
 #
-# -d is daemon mode
+# -d is daemon mode, this has it run in the background
 
 # __________________ NOTES _______________________ #
 
