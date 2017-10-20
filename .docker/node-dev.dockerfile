@@ -14,7 +14,8 @@ RUN mkdir -p /opt/app
 
 ARG PORT=3000
 ENV PORT $PORT
-EXPOSE ${PORT} 5858 9229
+
+EXPOSE 3000 5858 9229
 
 # check every 30s to ensure this service returns HTTP 200
 HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
@@ -35,6 +36,7 @@ COPY . /opt/app
 # using node here is still more graceful stopping then npm with --init afaik
 # I still can't come up with a good production way to run with npm and graceful shutdown
 CMD [ "node", "./src/app.js" ]
+# CMD [ "node", "./watcher.js" ]
 
 # ENTRYPOINT [ "node", "./src/app.js" ]
 

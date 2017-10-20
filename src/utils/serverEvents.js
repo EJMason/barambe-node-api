@@ -5,37 +5,30 @@ const chalk = require('chalk');
  * Node process events
  */
 module.exports.processCloseEvents = (serverInstance, dbConnection) => {
+  // Sigint
   process.on('SIGINT', function onSigint () {
     console.info(
       'Got SIGINT (aka ctrl-c in docker). Graceful shutdown ',
       new Date().toISOString()
     );
-
-    serverInstance.close((err) => {
-      if (err) {
-        console.error('There was an error');
-        process.exitCode = 1;
-      }
-      process.exit();
-    });
+    shutdown(serverInstance);
   });
 
+  // Sigterm
   process.on('SIGTERM', function onSigterm () {
     console.info(
       'Got SIGTERM (docker container stop). Graceful shutdown ',
       new Date().toISOString()
     );
 
-    serverInstance.close((err) => {
-      if (err) {
-        console.error('There was an error');
-        process.exitCode = 1;
-      }
-      process.exit();
-    });
+    shutdown(serverInstance);
   });
+
 }
 
+/**
+ * Error handler for process
+ */
 module.exports.onError = (error) => {
   if (error.syscall !== 'listen') throw error;
   switch (error.code) {
@@ -52,6 +45,9 @@ module.exports.onError = (error) => {
   }
 }
 
+/**
+ * Output info for development
+ */
 module.exports.onListening = (port, nodeEnv) => {
   console.log('');
   console.log(`${chalk.blue('Server Listening on port ')}${chalk.yellow(port)}`);
@@ -59,3 +55,15 @@ module.exports.onListening = (port, nodeEnv) => {
   console.log('-----------------------------------------------------------------');
   console.log('');
 }
+
+// ______Private methods______
+function shutdown(server) {
+  server.close(function onServerClosed (err) {
+    if (err) {
+      console.error(err);
+      process.exitCode = 1;
+		}
+		process.exit();
+  })
+}
+

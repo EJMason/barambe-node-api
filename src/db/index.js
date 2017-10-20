@@ -4,7 +4,7 @@ mongoose.connect('mongodb://mongodb-docker/bar_main', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 
-// ----------- RM below --------------- //
+// ----------- RM below --------------- /
 
 var Cat = mongoose.model('Cat', { name: String });
 

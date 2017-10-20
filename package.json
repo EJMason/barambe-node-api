@@ -6,11 +6,11 @@
   "scripts": {
     "test": "jest --color",
     "test:w": "NODE_ENV=testing jest --watch --colors",
-    "docker:dev": "docker-compose up",
-    "docker:build": "docker build --file=\"./.docker/node-dev.dockerfile\" --tag ejmason/node .",
-    "dev": "NODE_ENV=development node ./src/app.js"
+    "up": "docker-compose up",
+    "down": "docker-compose down",
+    "dev": "NODE_ENV=development node ./watcher.js"
   },
-  "author": "",
+  "author": "ejmason",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "jest": "^21.2.1",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.1"
   },
   "jest": {
     "verbose": true,
@@ -39,5 +40,15 @@
     "coverageReporters": [
       "text-summary"
     ]
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "watch": [],
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "script": "./src/app.js",
+    "verbose": true
   }
 }

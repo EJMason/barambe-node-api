@@ -37,11 +37,6 @@ if (config.isDevelopment) {
   // app.use(morgan('combined', {stream: accessLogStream}));
 }
 
-
-app.get('/test', (req, res) => {
-  res.status(200).send('get test has worked!');
-});
-
 app.get('/healthz', function (req, res) {
   res.status(200).send('I am happy and healthy\n');
 });
