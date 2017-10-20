@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --color",
     "test:w": "NODE_ENV=testing jest --watch --colors",
-    "docker:dev": "node ./src/app.js",
+    "docker:dev": "docker-compose up",
     "docker:build": "docker build --file=\"./.docker/node-dev.dockerfile\" --tag ejmason/node .",
     "dev": "NODE_ENV=development node ./src/app.js"
   },

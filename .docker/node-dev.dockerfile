@@ -7,19 +7,14 @@ FROM node:8.6.0-alpine
 
 LABEL maintainer="EJMason <eliotjunior@gmail.com>"
 
-ENV NODE_ENV=development
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 
 RUN mkdir -p /opt/app
 
-# set our node environment, either development or production
-# defaults to production, compose overrides this to development on build and run
-# ARG NODE_ENV=production
-# ENV NODE_ENV $NODE_ENV
-
-# default to port 80 for node, and 5858 or 9229 for debug
 ARG PORT=3000
 ENV PORT $PORT
-EXPOSE $PORT 5858 9229
+EXPOSE ${PORT} 5858 9229
 
 # check every 30s to ensure this service returns HTTP 200
 HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
