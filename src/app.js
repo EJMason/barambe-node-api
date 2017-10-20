@@ -7,6 +7,7 @@ const chalk = require('chalk');
 const bodyParser = require('body-parser');
 
 const utils = require('./utils/serverEvents');
+// const db = require('./db');
 
 const app = express();
 const server = http.createServer(app);
@@ -38,9 +39,7 @@ if (config.isDevelopment) {
 
 
 app.get('/test', (req, res) => {
-  res
-  .status(200)
-  .send('ok');
+  res.status(200).send('get test has worked!');
 });
 
 
@@ -58,5 +57,8 @@ server.on('error', utils.onError);
 // -------------------------------- extra credit ------------------------------ //
 // add logger
 
+
+// db.init();
+// db.makeCat();
 
 // end

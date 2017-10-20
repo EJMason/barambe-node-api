@@ -4,7 +4,7 @@
   "description": "Barambe REST API",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --color",
     "test:w": "NODE_ENV=testing jest --watch --colors",
     "docker:dev": "node ./src/app.js",
     "docker:build": "docker build --file=\"./.docker/node-dev.dockerfile\" --tag ejmason/node .",
@@ -18,7 +18,8 @@
     "config": "^1.27.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "helmet": "^3.9.0"
+    "helmet": "^3.9.0",
+    "mongoose": "^4.12.3"
   },
   "devDependencies": {
     "jest": "^21.2.1",
@@ -28,8 +29,7 @@
     "verbose": true,
     "testEnvironment": "node",
     "collectCoverage": true,
-    "collectCoverageFrom": [
-    ],
+    "collectCoverageFrom": [],
     "coverageThreshold": {
       "branches": 80,
       "functions": 80,
