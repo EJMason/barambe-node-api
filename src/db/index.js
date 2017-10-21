@@ -27,30 +27,17 @@ const bootstrapDatabase = async () => {
   }
 }
 
-
-// ----------- RM below --------------- /
-
-// var Cat = mongoose.model('Cat', { name: String });
-
-
-// const makeCat = () => {
-//   console.log('adding a cat...');
-//   var kitty = new Cat({ name: 'Zildjian' });
-//   kitty.save(function (err) {
-//     if (err) {
-//       console.log('Kitty error...');
-//       console.log(err);
-//     } else {
-//       console.log('Send the kitty')
-//       console.log(kitty);
-//     }
-//   });
-// }
-
 // ----------------- Listeners ------------------------- //
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db error:'));
 db.once('open', () => {
-  console.log('connected!!!!');
+  console.log('db connection is successful!');
 });
+
+// -------------- graceful shutdown ----------------- //
+
+
+module.exports = {
+  bootstrapDatabase,
+}
